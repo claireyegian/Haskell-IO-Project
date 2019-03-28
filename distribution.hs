@@ -31,4 +31,12 @@
     * Letters that do not occur in the text are not listed in the output at all.
 -}
 
-main = putStrLn "Put your program here!"
+import Data.List
+import Data.Char
+
+finalList string = sortBy (\x y -> length y `compare` length x) $ group $ sort [toLower x | x <- string, x `elem` "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+
+main = do
+  putStrLn "Please enter a string of text (the bigger the better):"
+  string <- getLine
+  mapM_ putStrLn $ finalList string
